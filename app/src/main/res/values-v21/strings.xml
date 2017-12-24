@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="description_text">Morbi et euismod augue. Etiam ut semper lorem. Donec viverra nisi at ligula bibendum mollis. Morbi blandit justo non nulla luctus sodales. Phasellus euismod quam et nisl malesuada pharetra quis interdum libero. Cras sed lacus a turpis lacinia euismod ac non tellus. Vivamus dui sapien, laoreet non urna nec, tempus porta felis. Pellentesque commodo ipsum sit amet blandit laoreet. Nunc lobortis pellentesque est id efficitur. Sed malesuada mi tortor, ut porta dolor maximus ut. In hac habitasse platea dictumst. Cras sodales sem neque, in commodo dui suscipit sed. Vivamus id lectus a orci consectetur volutpat vitae sit amet erat. Pellentesque volutpat ac lorem ac fringilla. Duis viverra eu neque vel facilisis. Vivamus justo nibh, rutrum et elit posuere, lacinia malesuada mi.Aenean faucibus ligula nisl, ut laoreet nisi vehicula vitae. Vestibulum ac est tristique, fringilla metus non, tempus augue. Nullam in nisl at ligula ultrices venenatis sed a dolor. Ut rhoncus bibendum dolor, et tempus urna volutpat eget. Donec pellentesque mollis nunc, et accumsan arcu ullamcorper at.</string>
+    <string name="like_button">Like Button</string>
+    <string name="dislike_button">Dislike Button</string>
+    <string name="add_library_button_text">ADD TO LIBRARY</string>
+</resources>
