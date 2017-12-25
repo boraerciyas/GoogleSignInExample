@@ -2,6 +2,8 @@ package com.example.ybe.googlesigninexample;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
@@ -122,6 +124,7 @@ public class Tab1Architecture extends Fragment {
 
         like_button.setOnClickListener(mButtonListener);
         unlike_button.setOnClickListener(mButtonListener);
+        library_button.setOnClickListener(mButtonListener);
 
         return rootView;
     }
@@ -147,9 +150,6 @@ public class Tab1Architecture extends Fragment {
     private View.OnClickListener mButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
-            Log.i(TAG, art_name.getText().toString());
-
             switch (view.getId())
             {
                 case R.id.like_button:  {
@@ -257,6 +257,49 @@ public class Tab1Architecture extends Fragment {
 
                     String artName = art_name.getText().toString();
 
+                    DatabaseReference libRef = database.getReference("ArtWorks/ArtType/architecture/" + artName);
+
+                    Log.i(TAG, libRef.toString());
+
+                    libRef.runTransaction(new Transaction.Handler() {
+                        @Override
+                        public Transaction.Result doTransaction(MutableData mutableData) {
+                            Art art = mutableData.getValue(Art.class);
+                            Log.i(TAG, art.toString());
+                            if (art == null)    {
+                                return Transaction.success(mutableData);
+                            }
+
+                            if (art.library.containsKey(userUid))   {
+                                //If user likes it already, then show the percentage bar.
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        library_button.setBackgroundResource(R.color.green);
+                                    }
+                                });
+                            }
+                            else    {
+                                art.library.put(userUid, true);
+                                //If user likes it already, then show the percentage bar.
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        library_button.setBackgroundResource(R.color.green);
+                                    }
+                                });
+                            }
+                            // Set value and report transaction success
+                            mutableData.setValue(art);
+                            return Transaction.success(mutableData);
+                        }
+
+                        @Override
+                        public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                            Log.d(TAG, "addLibraryTransaction:onComplete:" + databaseError);
+                        }
+                    });
+                    break;
                 }
             }
         }

@@ -22,7 +22,7 @@ public class Tab7Final extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab1_architecture, container, false);
+        View rootView = inflater.inflate(R.layout.tab7_final, container, false);
 
         //Passed Parameter from Main2Activity.
         Bundle args = this.getArguments();
@@ -39,6 +39,16 @@ public class Tab7Final extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("userUid", userUid);
                 Intent intent = new Intent(getActivity(), Library.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        add_new_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("userUid", userUid);
+                Intent intent = new Intent(getActivity(), AddNewActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

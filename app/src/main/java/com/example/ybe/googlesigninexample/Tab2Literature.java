@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +41,7 @@ public class Tab2Literature extends Fragment {
     public ImageButton like_button, unlike_button;
     public ProgressBar like_bar;
     public LinearLayout like_buttons;
+    public Button library_button;
 
     private static final String TAG = "Tab2Literature";
 
@@ -65,6 +67,7 @@ public class Tab2Literature extends Fragment {
         unlike_button = rootView.findViewById(R.id.unlike_button);
         like_buttons = rootView.findViewById(R.id.like_buttons);
         like_bar = rootView.findViewById(R.id.like_bar);
+        library_button = rootView.findViewById(R.id.library_button);
 
         //Policy for retrieving image from URL
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -116,6 +119,8 @@ public class Tab2Literature extends Fragment {
 
         like_button.setOnClickListener(mButtonListener);
         unlike_button.setOnClickListener(mButtonListener);
+        library_button.setOnClickListener(mButtonListener);
+
 
         return rootView;
     }
@@ -241,6 +246,56 @@ public class Tab2Literature extends Fragment {
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                             Log.e(TAG, "loadDailyPlan:onCancelled", databaseError.toException());
+                        }
+                    });
+                    break;
+                }
+                case R.id.library_button:   {
+                    Log.w(TAG, "Add to Library button is pressed.");
+
+                    String artName = art_name.getText().toString();
+                    Log.i(TAG, artName);
+
+                    DatabaseReference libRef = database.getReference("ArtWorks/ArtType/literature/" + artName);
+                    Log.i(TAG, "Library Database Reference is " + libRef.toString());
+
+                    libRef.runTransaction(new Transaction.Handler() {
+                        @Override
+                        public Transaction.Result doTransaction(MutableData mutableData) {
+                            Art art = mutableData.getValue(Art.class);
+                            if (art == null)    {
+                                return Transaction.success(mutableData);
+                            }
+
+                            if (art.library.containsKey(userUid))   {
+                                //If user likes it already, then show the percentage bar.
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Log.i(TAG, "Art is already added to library.");
+                                        library_button.setBackgroundResource(R.color.green);
+                                    }
+                                });
+                            }
+                            else    {
+                                Log.i(TAG, "Art is being added to library.");
+                                art.library.put(userUid, true);
+                                //If user likes it already, then show the percentage bar.
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        library_button.setBackgroundResource(R.color.green);
+                                    }
+                                });
+                            }
+                            // Set value and report transaction success
+                            mutableData.setValue(art);
+                            return Transaction.success(mutableData);
+                        }
+
+                        @Override
+                        public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                            Log.d(TAG, "addLibraryTransaction:onComplete:" + databaseError);
                         }
                     });
                     break;

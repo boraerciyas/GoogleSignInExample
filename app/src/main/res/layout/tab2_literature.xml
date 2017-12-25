@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:background="@drawable/brush" />
+                    android:background="@drawable/literature_gray" />
             </LinearLayout>
 
             <ImageView
@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_green_dark"
+                    android:background="@drawable/like"
                     android:visibility="visible"
                     android:contentDescription="@string/like_button" />
 
@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_red_dark"
+                    android:background="@drawable/dislike"
                     android:visibility="visible"
                     android:contentDescription="@string/dislike_button" />
                 <ProgressBar

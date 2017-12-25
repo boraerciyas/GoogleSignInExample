@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     // [END declare_auth]
 
-    private TextView status;
-
     private GoogleSignInClient mGoogleSignInClient;
 
 
@@ -43,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.google_signin_button).setOnClickListener(this);
-        status = findViewById(R.id.status);
 
         // [START config_signin]
         // Configure Google Sign In
@@ -101,8 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }
         else    {
-            status.setText(R.string.google_failed);
-
+            Log.e(TAG, "Could not UPDATE the View");
         }
 
     }
@@ -125,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            status.setText(R.string.not_signed);
                             updateUI(null);
                         }
                     }
