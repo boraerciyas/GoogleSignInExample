@@ -247,7 +247,8 @@ public class Tab4Painting extends Fragment {
     };
 
     private void showBar(int likeCount, int unlikeCount) {
-        final int percentage = (likeCount/(likeCount + unlikeCount)) * 100;
+        Double tempPercentage = (double)likeCount/( (double)likeCount + (double) unlikeCount) * 100;
+        final int percentage = tempPercentage.intValue();
 
         getActivity().runOnUiThread(new Runnable() {
             @Override

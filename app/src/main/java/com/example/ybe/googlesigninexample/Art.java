@@ -18,6 +18,7 @@ public class Art {
     public Map<String, Boolean> likes = new HashMap<>();
     public int unlikeCount = 0;
     public Map<String, Boolean> unlikes = new HashMap<>();
+    public Map<String, Boolean> library = new HashMap<>();
 
     public Art()    {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -82,6 +83,7 @@ public class Art {
         result.put("likes", likes);
         result.put("unlikeCount", unlikeCount);
         result.put("unlikes", unlikes);
+        result.put("library", library);
 
         return result;
     }

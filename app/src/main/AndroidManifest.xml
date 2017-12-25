@@ -18,17 +18,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity-->
-            <!--android:name=".Main3Activity"-->
-            <!--android:label="@string/title_activity_main3"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <!-- <activity -->
+        <!-- android:name=".Main3Activity" -->
+        <!-- android:label="@string/title_activity_main3" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBhX29IMFU7bVceZ1WJ9Om2DCYGda-Q28E"/>
+            android:value="AIzaSyBhX29IMFU7bVceZ1WJ9Om2DCYGda-Q28E" />
+
+        <activity
+            android:name=".Library"
+            android:label="@string/title_activity_library"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

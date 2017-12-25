@@ -172,11 +172,14 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
 
                     case 6: {
                         //"last page" fragment.
-
+                        Tab7Final fragment = new Tab7Final();
+                        fragment.setArguments(bundle);
+                        return fragment;
                     }
                     default: {
-                        return new Tab1Architecture();
-                    }
+                        Tab7Final fragment = new Tab7Final();
+                        fragment.setArguments(bundle);
+                        return fragment;                    }
                 }
             }
 

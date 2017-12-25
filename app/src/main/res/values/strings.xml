@@ -18,4 +18,8 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="art_image_description">Here to show Art Images</string>
     <string name="not_signed">You could not signed in successfully.</string>
+    <string name="completed_daily">\"You completed your daily <b>ART</b> informations\"</string>
+    <string name="go_to_library">Go To Library</string>
+    <string name="add_new_artwork">Add New ArtWork</string>
+    <string name="title_activity_library">Library</string>
 </resources>

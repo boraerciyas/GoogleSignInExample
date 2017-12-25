@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +41,7 @@ public class Tab1Architecture extends Fragment {
     public ImageButton like_button, unlike_button;
     public ProgressBar like_bar;
     public LinearLayout like_buttons;
+    public Button library_button;
 
     private static final String TAG = "Tab1Architecture";
 
@@ -65,6 +67,7 @@ public class Tab1Architecture extends Fragment {
         unlike_button = rootView.findViewById(R.id.unlike_button);
         like_buttons = rootView.findViewById(R.id.like_buttons);
         like_bar = rootView.findViewById(R.id.like_bar);
+        library_button = rootView.findViewById(R.id.library_button);
 
         //Policy for retrieving image from URL
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -249,12 +252,19 @@ public class Tab1Architecture extends Fragment {
                     });
                     break;
                 }
+                case R.id.library_button:   {
+                    Log.w(TAG, "Add to Library button is pressed.");
+
+                    String artName = art_name.getText().toString();
+
+                }
             }
         }
     };
 
     private void showBar(int likeCount, int unlikeCount) {
-        final int percentage = (likeCount/(likeCount + unlikeCount)) * 100;
+        Double tempPercentage = (double)likeCount/( (double)likeCount + (double) unlikeCount) * 100;
+        final int percentage = tempPercentage.intValue();
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
